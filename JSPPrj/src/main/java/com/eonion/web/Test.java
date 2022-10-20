@@ -13,6 +13,6 @@ public class Test extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		PrintWriter out = resp.getWriter();
-		out.println("test!");
+		out.println("test!!");
 	}
 }
