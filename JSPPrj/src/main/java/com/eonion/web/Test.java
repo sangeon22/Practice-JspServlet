@@ -2,6 +2,7 @@ package com.eonion.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,9 +19,20 @@ public class Test extends HttpServlet{
 		// 브라우저에서 읽을 수 있도록 Response Header에 심는다.
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		
+
 		PrintWriter out = response.getWriter();
-		out.println("안녕 hi !!");
+//		out.println("안녕 hi !!");
+		
+		
+		// 사용자 입력 - GET 요청, QueryString
+		String cnt_ = request.getParameter("cnt");
+		int cnt = 100;
+		if (cnt_ != null && !cnt_.equals(""))
+			cnt = Integer.parseInt(cnt_);
+		
+		for (int i = 0; i < cnt; i++) {
+			out.println((i+1) + "안녕 Servlet!! <br >");
+		}
 		
 		
 	}
