@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/hello")
-public class Test extends HttpServlet{
+@WebServlet("/notice-reg")
+public class NoticeReg extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -21,19 +21,13 @@ public class Test extends HttpServlet{
 		response.setContentType("text/html; charset=UTF-8");
 
 		PrintWriter out = response.getWriter();
-//		out.println("안녕 hi !!");
 		
 		
-		// 사용자 입력 - GET 요청, QueryString
-		String cnt_ = request.getParameter("cnt");
-		int cnt = 100;
-		if (cnt_ != null && !cnt_.equals(""))
-			cnt = Integer.parseInt(cnt_);
+		// 사용자 입력 - POST 요청, QueryString
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
 		
-		for (int i = 0; i < cnt; i++) {
-			out.println((i+1) + "안녕 Servlet!! <br >");
-		}
-		
-		
+		out.println(title);
+		out.println(content);
 	}
 }
