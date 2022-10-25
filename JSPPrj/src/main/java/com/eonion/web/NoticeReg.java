@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/hello")
-public class Test extends HttpServlet{
+@WebServlet("/notice-reg")
+public class NoticeReg extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -19,21 +19,18 @@ public class Test extends HttpServlet{
 		// 브라우저에서 읽을 수 있도록 Response Header에 심는다.
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-
+		
+		// 사용자 요청을 UTF-8로 인식함 -> 영어는 1Byte, 한글은 2Byte인데 ISO 방식이라 바꿔줌
+		request.setCharacterEncoding("UTF-8");
+		
 		PrintWriter out = response.getWriter();
-//		out.println("안녕 hi !!");
 		
 		
-		// 사용자 입력 - GET 요청, QueryString
-		String cnt_ = request.getParameter("cnt");
-		int cnt = 100;
-		if (cnt_ != null && !cnt_.equals(""))
-			cnt = Integer.parseInt(cnt_);
+		// 사용자 입력 - POST 요청, QueryString
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
 		
-		for (int i = 0; i < cnt; i++) {
-			out.println((i+1) + "안녕 Servlet!! <br >");
-		}
-		
-		
+		out.println(title);
+		out.println(content);
 	}
 }
