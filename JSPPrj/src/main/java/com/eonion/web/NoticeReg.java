@@ -21,7 +21,7 @@ public class NoticeReg extends HttpServlet{
 		response.setContentType("text/html; charset=UTF-8");
 		
 		// 사용자 요청을 UTF-8로 인식함 -> 영어는 1Byte, 한글은 2Byte인데 ISO 방식이라 바꿔줌
-		request.setCharacterEncoding("UTF-8");
+//		request.setCharacterEncoding("UTF-8");
 		
 		PrintWriter out = response.getWriter();
 		
