@@ -7,7 +7,10 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 
+
+@WebFilter("/*")
 public class CharacterEncodingFilter implements Filter {
 
 	@Override
@@ -22,6 +25,7 @@ public class CharacterEncodingFilter implements Filter {
 //		요청이 오면 흐름을 그냥 넘겨서 다음 필터나 서블릿이 실행되게함
 		System.out.println("before filter");
 		request.setCharacterEncoding("UTF-8");
+		
 		chain.doFilter(request, response);
 		
 //		필터가 실행된 후, response가 오면 아래가 실행됨

@@ -22,7 +22,7 @@
   version="4.0"
   metadata-complete="false">
 
-  <servlet>
+ <!--  <servlet>
   	<servlet-name>test</servlet-name>
   	<servlet-class>com.eonion.web.Test</servlet-class>
   </servlet>
@@ -31,18 +31,18 @@
   	<servlet-name>test</servlet-name>
   	<url-pattern>/hello</url-pattern>
   </servlet-mapping>
+   -->
   
   
-  
-  <filter>
+	<!-- <filter>
 		<filter-name>characterEncodingFilter</filter-name>
-		<filter-class>com.newlecture.web.filter.CharacterEncodingFilter</filter-class>
+		<filter-class>com.eonion.web.filter.CharacterEncodingFilter</filter-class>
 	</filter>
+	
 	<filter-mapping>
 		<filter-name>characterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-  
+	</filter-mapping> -->
   
   <display-name>Welcome to Tomcat</display-name>
   <description>
