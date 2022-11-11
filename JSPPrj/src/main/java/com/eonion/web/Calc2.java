@@ -81,6 +81,14 @@ public class Calc2 extends HttpServlet {
 			// 쿠키를 만들어서 response Header에 심어서 클라이언트에게 전달
 			Cookie valueCookie = new Cookie("value", String.valueOf(v));
 			Cookie opCookie = new Cookie("op", op);
+			
+			// 쿠키 옵션 - URL에 맞는 경우에만 쿠키를 가져오도록
+			valueCookie.setPath("/calc2");
+			opCookie.setPath("/calc2");
+			
+			// 쿠키의 만료시간을 주는 옵션(브라우저를 닫아도 유효)
+			valueCookie.setMaxAge(24*60*60);
+			
 			response.addCookie(valueCookie);
 			response.addCookie(opCookie);
 		}
