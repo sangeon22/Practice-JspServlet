@@ -21,7 +21,8 @@ pageContext.setAttribute("result", "hello");
 	
 	${result}<br>
 	
-	${param.n}<br>
+	${empty param.n?"파라미터가 없습니다.":param.n}<br>
+	${param.n/2}<br>
 	${header.host}<br>
 	${header.accept}
 	
