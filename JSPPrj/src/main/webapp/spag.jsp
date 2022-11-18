@@ -12,20 +12,18 @@ pageContext.setAttribute("result", "hello");
 %>
 <body>
 	<%-- <%=request.getAttribute("result") %> --%>
-	${requestScope.result}입니다.
+	${requestScope.result}입니다.<br>
 	
-	<br>
-	
-	${names[0]}
-	
-	<br>
+	${names[0]}<br>
 	
 	<%-- <%= ((Map)request.getAttribute("notice")).get("title") %> --%>
-	${notice.title}
+	${notice.title}<br>
 	
-	<br>
+	${result}<br>
 	
-	${result}
+	${param.n}<br>
+	${header.host}<br>
+	${header.accept}
 	
 </body>
 </html>
