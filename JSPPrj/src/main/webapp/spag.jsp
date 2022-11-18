@@ -7,7 +7,25 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<%
+pageContext.setAttribute("result", "hello");
+%>
 <body>
-	<%=request.getAttribute("result") %>
+	<%-- <%=request.getAttribute("result") %> --%>
+	${requestScope.result}입니다.
+	
+	<br>
+	
+	${names[0]}
+	
+	<br>
+	
+	<%-- <%= ((Map)request.getAttribute("notice")).get("title") %> --%>
+	${notice.title}
+	
+	<br>
+	
+	${result}
+	
 </body>
 </html>

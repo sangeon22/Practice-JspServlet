@@ -1,6 +1,8 @@
 package com.eonion.web;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,8 +28,15 @@ public class Spag extends HttpServlet {
 			result = "홀수";
 		else
 			result = "짝수";
-		
 		request.setAttribute("result", result);
+		
+		String[] names = {"eoni", "minsu"};
+		request.setAttribute("names", names);
+		
+		Map<String, Object> notice = new HashMap<>();
+		notice.put("id", 1);
+		notice.put("title", "EL 표기");
+		request.setAttribute("notice", notice);
 		
 		// forward - 현재 작업을 하던 것을 JSP에서 이어가도록
 		RequestDispatcher dispatcher = request.getRequestDispatcher("spag.jsp");
