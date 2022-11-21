@@ -5,11 +5,11 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-String url = "jdbc:oracle:thin:@localhost:1521/";
+String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
 String sql = "SELECT * FROM NOTICE";
 
 Class.forName("oracle.jdbc.driver.OracleDriver");
-Connection con = DriverManager.getConnection(url, "", "");
+Connection con = DriverManager.getConnection(url, "eoni", "");
 Statement st = con.createStatement();
 ResultSet rs = st.executeQuery(sql);
 
@@ -186,15 +186,15 @@ ResultSet rs = st.executeQuery(sql);
 					</thead>
 					<tbody>
 					
-					<% for(int i=0; i<10; i++){ %>
+					<% while(rs.next()){ %>
 					<tr>
-						<td><%=i+1%></td>
-						<td class="title indent text-align-left"><a href="detail.html">스프링 8강까지의 예제 코드</a></td>
-						<td>newlec</td>
+						<td><%=rs.getInt("ID")%></td>
+						<td class="title indent text-align-left"><a href="detail.html">><%=rs.getString("TITLE")%></a></td>
+						<td><%=rs.getString("WRITER_ID")%></td>
 						<td>
-							2019-08-18		
+							<%=rs.getDate("REGDATE") %>	
 						</td>
-						<td>146</td>
+						<td><%=rs.getInt("HIT") %></td>
 					</tr>
 					<%} %>	
 					
