@@ -21,7 +21,7 @@
 - 1-19. EL<br>
 - 1-20. 웹프로그램 구축<br>
 
-## 2. JDBC OrcleDB (JSP/Servlet의 아래 1-20부터 필요하여 SQL 데이터 준비겸 JDBC 복습)
+## 2. JDBC OrcleDB (JSP/Servlet의 위 1-20부터 필요하여 SQL 데이터 준비겸 JDBC 복습)
 
 
 
