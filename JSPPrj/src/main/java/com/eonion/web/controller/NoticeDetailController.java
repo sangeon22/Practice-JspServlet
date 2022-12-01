@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.eonion.web.entity.Notice;
+
 @WebServlet("/notice/detail")
 public class NoticeDetailController extends HttpServlet {
 	
@@ -39,14 +41,15 @@ public class NoticeDetailController extends HttpServlet {
 			String files = rs.getString("FILES");
 			String content = rs.getString("CONTENT");
 			
-			// request 객체 속성에 저장
-			request.setAttribute("title", title);
-			request.setAttribute("writerId", writerId);
-			request.setAttribute("regdate", regdate);
-			request.setAttribute("hit", hit);
-			request.setAttribute("files", files);
-			request.setAttribute("content", content);
+			Notice notice = new Notice(id, title, writerId, regdate, hit, files, content);
 			
+			request.setAttribute("n", notice);
+			
+			 /* // request 객체 속성에 저장 request.setAttribute("title", title);
+			 * request.setAttribute("writerId", writerId); request.setAttribute("regdate",
+			 * regdate); request.setAttribute("hit", hit); request.setAttribute("files",
+			 * files); request.setAttribute("content", content);
+			 */			
 			rs.close();
 			st.close();
 			con.close();
