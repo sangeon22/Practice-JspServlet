@@ -1,19 +1,8 @@
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.Connection"%>
+<%@page import="com.eonion.web.entity.Notice"%>
+<%@page import="java.util.List"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-String url = "jdbc:oracle:thin:@localhost:1523/xepdb1";
-String sql = "SELECT * FROM NOTICE";
 
-Class.forName("oracle.jdbc.driver.OracleDriver");
-Connection con = DriverManager.getConnection(url, "", "");
-Statement st = con.createStatement();
-ResultSet rs = st.executeQuery(sql);
-
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -185,19 +174,20 @@ ResultSet rs = st.executeQuery(sql);
 						</tr>
 					</thead>
 					<tbody>
-					
-					<% while(rs.next()){ %>
+					<!-- 반복문을 위해서 태그라이브러리를 사용하는 방법도 있으나, 일단은 자바코드블록을 통해 list를 반복으로 순회하여 꺼내는 식으로 구현-->
+					<%
+					List<Notice> list = (List<Notice>)request.getAttribute("list");
+					for(Notice n : list) {
+						pageContext.setAttribute("n", n);
+					%>
 					<tr>
-						<td><%=rs.getInt("ID")%></td>
-						<td class="title indent text-align-left"><a href="detail?id=<%= rs.getInt("ID")%>"><%=rs.getString("TITLE")%></a></td>
-						<td><%=rs.getString("WRITER_ID")%></td>
-						<td>
-							<%=rs.getDate("REGDATE") %>	
-						</td>
-						<td><%=rs.getInt("HIT") %></td>
+						<td>${n.id}</td>
+						<td class="title indent text-align-left"><a href="detail?id=${n.id}"></a>${n.title}</td>
+						<td>${n.writerId}</td>
+						<td>${n.regdate}</td>
+						<td>${n.hit}</td>
 					</tr>
-					<%} %>	
-					
+					<%} %>
 					
 					</tbody>
 				</table>
@@ -271,9 +261,4 @@ ResultSet rs = st.executeQuery(sql);
     </body>
     
     </html>
-    
-    <%
-    rs.close();
-   	st.close();
-    con.close();     
-    %>
+  
