@@ -14,6 +14,7 @@ public class Notice {
 	public Notice() {}
 	
 	public Notice(int id, String title, String writerId, Date regdate, String hit, String files, String content) {
+		this.id = id;
 		this.title = title;
 		this.writerId = writerId;
 		this.regdate = regdate;
