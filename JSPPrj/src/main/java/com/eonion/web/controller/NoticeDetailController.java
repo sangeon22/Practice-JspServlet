@@ -62,7 +62,7 @@ public class NoticeDetailController extends HttpServlet {
 		}
 		
 		// detail.jsp 뷰를 작성하기 위해 현재 상태값을 request 객체로 forward를 통해 넘겨줌
-		request.getRequestDispatcher("/notice/detail.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/notice/detail.jsp").forward(request, response);
 	}
 
 }
