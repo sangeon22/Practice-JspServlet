@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -175,11 +175,13 @@
 					</thead>
 					<tbody>
 					<!-- 반복문을 위해서 태그라이브러리를 사용하는 방법도 있으나, 일단은 자바코드블록을 통해 list를 반복으로 순회하여 꺼내는 식으로 구현-->
-					<%
+					<%-- <%
 					List<Notice> list = (List<Notice>)request.getAttribute("list");
 					for(Notice n : list) {
 						pageContext.setAttribute("n", n);
-					%>
+					%> --%>
+					
+					<c:forEach var="n" items="${list}">
 					<tr>
 						<td>${n.id}</td>
 						<td class="title indent text-align-left"><a href="detail?id=${n.id}">${n.title}</a></td>
@@ -187,7 +189,8 @@
 						<td>${n.regdate}</td>
 						<td>${n.hit}</td>
 					</tr>
-					<%} %>
+					</c:forEach>
+					<%-- <%} %> --%>
 					
 					</tbody>
 				</table>
