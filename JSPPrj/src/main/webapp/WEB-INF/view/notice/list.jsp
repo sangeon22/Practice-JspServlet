@@ -151,12 +151,12 @@
 					<fieldset>
 						<legend class="hidden">공지사항 검색 필드</legend>
 						<label class="hidden">검색분류</label>
-						<select name="f">
-							<option  value="title">제목</option>
-							<option  value="writerId">작성자</option>
+						<select name="field">
+							<option ${(param.field == "title") ? "selected" : ""} value="title">제목</option>
+							<option ${(param.field == "writerId") ? "selected" : ""} value="writerId">작성자</option>
 						</select> 
 						<label class="hidden">검색어</label>
-						<input type="text" name="q" value=""/>
+						<input type="text" name="keyWord" value="${param.keyWord}"/>
 						<input class="btn btn-search" type="submit" value="검색" />
 					</fieldset>
 				</form>
