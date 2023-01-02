@@ -28,23 +28,28 @@ public class NoticeListController extends HttpServlet{
 		
 		String field_ = request.getParameter("field");
 		String query_ = request.getParameter("keyWord");
+		String page_ = request.getParameter("page");
 		
 		String field = "title";
-		if(field_ != null) {
+		if(field_ != null && !field_.equals("")) {
 			if(field_.equals("writerId")) {
 				field_ = "writer_id";
-				System.out.println("============== ifififiif");
 			}
 			field = field_;				
 		}
-		System.out.println("============== "+field);
+		
 		String query = "";
-		if (query_ != null) {
+		if (query_ != null && !query_.equals("")) {
 			query = query_;
 		}
 		
+		int page = 1;
+		if (page_ != null && !page_.equals("")) {
+			page = Integer.parseInt(page_);
+		}
+		
 		NoticeService noticeService = new NoticeService();
-		List<Notice> list = noticeService.getNoticeList(field, query, 1);
+		List<Notice> list = noticeService.getNoticeList(field, query, page);
 		
 		request.setAttribute("list", list);
 		
