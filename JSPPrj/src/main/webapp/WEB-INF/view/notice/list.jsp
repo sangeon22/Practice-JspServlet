@@ -199,13 +199,13 @@
 			
 			<div class="indexer margin-top align-right">
 				<h3 class="hidden">현재 페이지</h3>
-				<div><span class="text-orange text-strong">1</span> / 1 pages</div>
+				<div><span class="text-orange text-strong">${(empty param.page)? 1 : param.page}</span> <span class="text-strong"> / 1 pages</span></div>
 			</div>
 
 			<div class="margin-top align-center pager">	
 		
 	<div>
-			<c:set var="page" value="${(param.page == null)?1:param.page}"/>
+			<c:set var="page" value="${(empty param.page) ? 1 : param.page}"/>
 			<c:set var="startNum" value="${page-(page-1)%5}"/>
 			<c:set var="lastNum" value="23"/>
 			<c:if test="${startNum-1 > 0}">
@@ -218,7 +218,7 @@
 	
 	<ul class="-list- center">
 		<c:forEach var="i" begin="0" end="4">
-		<li><a class="-text- orange bold" href="?page=${i+startNum}&field=${param.field}&keyword=${param.keyWord}" >${i+startNum}</a></li>
+		<li><a class="-text- ${(page == (i+startNum)) ? 'orange' : ''} bold" href="?page=${i+startNum}&field=${param.field}&keyword=${param.keyWord}" >${i+startNum}</a></li>
 		</c:forEach>			
 	</ul>
 	<div>
