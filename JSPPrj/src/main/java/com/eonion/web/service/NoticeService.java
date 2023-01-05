@@ -1,6 +1,7 @@
 package com.eonion.web.service;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,22 +12,23 @@ import java.util.Date;
 import java.util.List;
 
 import com.eonion.web.entity.Notice;
+import com.eonion.web.entity.NoticeView;
 
 public class NoticeService {
-	public List<Notice> getNoticeList() {
+	public List<NoticeView> getNoticeList() {
 		return getNoticeList("title", "", 1);
 	}
 
-	public List<Notice> getNoticeList(int page) {
+	public List<NoticeView> getNoticeList(int page) {
 		return getNoticeList("title", "", page);
 	}
 
-	public List<Notice> getNoticeList(String field, String query, int page) {
-		List<Notice> list = new ArrayList<>();
+	public List<NoticeView> getNoticeList(String field, String query, int page) {
+		List<NoticeView> list = new ArrayList<>();
 
 		String sql = "SELECT * FROM ("
 				+ "    SELECT ROWNUM NUM, N.*"
-				+ "    FROM (SELECT * FROM NOTICE WHERE "+field+" LIKE ? ORDER BY REGDATE DESC) N"
+				+ "    FROM (SELECT * FROM NOTICE_VIEW WHERE "+field+" LIKE ? ORDER BY REGDATE DESC) N"
 				+ ") "
 				+ "WHERE NUM BETWEEN ? AND ?";
 				
@@ -48,8 +50,9 @@ public class NoticeService {
 				Date regdate = rs.getDate("REGDATE");
 				String hit = rs.getString("HIT");
 				String files = rs.getString("FILES");
-				String content = rs.getString("CONTENT");
-				Notice notice = new Notice(id, title, writerId, regdate, hit, files, content);
+//				String content = rs.getString("CONTENT");
+				int cmtCount = rs.getInt("CMT_COUNT");
+				NoticeView notice = new NoticeView(id, title, writerId, regdate, hit, files, cmtCount);
 				list.add(notice);
 			}
 			rs.close();

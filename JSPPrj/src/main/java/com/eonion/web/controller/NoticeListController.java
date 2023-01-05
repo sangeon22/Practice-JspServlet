@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.eonion.web.entity.Notice;
+import com.eonion.web.entity.NoticeView;
 import com.eonion.web.service.NoticeService;
 
 @WebServlet("/notice/list")
@@ -49,7 +50,7 @@ public class NoticeListController extends HttpServlet{
 		}
 		
 		NoticeService noticeService = new NoticeService();
-		List<Notice> list = noticeService.getNoticeList(field, query, page);
+		List<NoticeView> list = noticeService.getNoticeList(field, query, page);
 		int count = noticeService.getNoticeCount(field, query);
 		
 		request.setAttribute("list", list);
