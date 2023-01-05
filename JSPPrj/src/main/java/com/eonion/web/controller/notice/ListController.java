@@ -1,4 +1,4 @@
-package com.eonion.web.controller;
+package com.eonion.web.controller.notice;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -21,7 +21,7 @@ import com.eonion.web.entity.NoticeView;
 import com.eonion.web.service.NoticeService;
 
 @WebServlet("/notice/list")
-public class NoticeListController extends HttpServlet{
+public class ListController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
