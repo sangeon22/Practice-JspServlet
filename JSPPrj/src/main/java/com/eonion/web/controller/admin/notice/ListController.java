@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -59,6 +60,20 @@ public class ListController extends HttpServlet{
 		//forward
 		request.getRequestDispatcher("/WEB-INF/view/admin/board/notice/list.jsp").forward(request, response);
 		
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String[] openIds = request.getParameterValues("open-id");
+		String[] delIds = request.getParameterValues("del-id");
+		
+		for (String openId : openIds) {
+			System.out.printf("openId = %s\n", openId);
+		}
+		
+		for (String delId : delIds) {
+			System.out.printf("delId = %s\n", delId);
+		}
 	}
 
 }
