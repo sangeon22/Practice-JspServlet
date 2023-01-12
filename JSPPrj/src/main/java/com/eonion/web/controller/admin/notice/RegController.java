@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.eonion.web.entity.Notice;
+import com.eonion.web.service.NoticeService;
+
 @WebServlet("/admin/board/notice/reg")
 public class RegController extends HttpServlet{
 	@Override
@@ -22,12 +25,22 @@ public class RegController extends HttpServlet{
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String isOpen = request.getParameter("open");
+		boolean pub = false;
+		if(isOpen != null) {
+			pub = true;
+		}
 		
-		PrintWriter out = response.getWriter();
-		out.printf("title : %s<br>", title);
-		out.printf("content : %s<br>", content);
-		out.printf("isOpen : %s<br>", isOpen);
+		Notice notice = new Notice();
+		notice.setContent(content);
+		notice.setTitle(title);
+		notice.setPub(pub);
+		// 인증, 권한 처리 후 변경 예정
+		notice.setWriterId("eoni");
 		
+		NoticeService noticeService = new NoticeService();
+		int result = noticeService.insertNotice(notice);
+		
+		response.sendRedirect("list");
 		
 	}
 }

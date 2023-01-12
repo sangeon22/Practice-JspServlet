@@ -26,7 +26,32 @@ public class NoticeService {
 	}
 
 	public int insertNotice(Notice notice) {
-		return 0;
+		int result = 0;
+
+		String sql = "INSERT INTO NOTICE(TITLE, CONTENT, WRITER_ID, PUB) VALUES(?,?,?,?)";
+		String url = "jdbc:oracle:thin:@localhost:1523/xepdb1";
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "", "");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, notice.getTitle());
+			st.setString(2, notice.getContent());
+			st.setString(3, notice.getWriterId());
+			st.setBoolean(4, notice.getPub());
+			
+			result = st.executeUpdate();
+			st.close();
+			con.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+
 	}
 
 	public int deleteNotice(int id) {
@@ -77,7 +102,8 @@ public class NoticeService {
 				String files = rs.getString("FILES");
 //				String content = rs.getString("CONTENT");
 				int cmtCount = rs.getInt("CMT_COUNT");
-				NoticeView notice = new NoticeView(id, title, writerId, regdate, hit, files, cmtCount);
+				boolean pub = rs.getBoolean("PUB");
+				NoticeView notice = new NoticeView(id, title, writerId, regdate, hit, files, pub, cmtCount);
 				list.add(notice);
 			}
 			rs.close();
@@ -154,7 +180,8 @@ public class NoticeService {
 				String hit = rs.getString("HIT");
 				String files = rs.getString("FILES");
 				String content = rs.getString("CONTENT");
-				notice = new Notice(nid, title, writerId, regdate, hit, files, content);
+				boolean pub = rs.getBoolean("PUB");
+				notice = new Notice(nid, title, writerId, regdate, hit, files, content, pub);
 			}
 			rs.close();
 			st.close();
@@ -194,7 +221,8 @@ public class NoticeService {
 				String hit = rs.getString("HIT");
 				String files = rs.getString("FILES");
 				String content = rs.getString("CONTENT");
-				notice = new Notice(nid, title, writerId, regdate, hit, files, content);
+				boolean pub = rs.getBoolean("PUB");
+				notice = new Notice(nid, title, writerId, regdate, hit, files, content, pub);
 			}
 			rs.close();
 			st.close();
@@ -234,7 +262,9 @@ public class NoticeService {
 				String hit = rs.getString("HIT");
 				String files = rs.getString("FILES");
 				String content = rs.getString("CONTENT");
-				notice = new Notice(nid, title, writerId, regdate, hit, files, content);
+				boolean pub = rs.getBoolean("PUB");
+				
+				notice = new Notice(nid, title, writerId, regdate, hit, files, content, pub);
 			}
 			rs.close();
 			st.close();
