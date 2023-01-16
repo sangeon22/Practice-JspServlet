@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import com.eonion.web.entity.Notice;
 import com.eonion.web.service.NoticeService;
@@ -32,7 +33,12 @@ public class RegController extends HttpServlet{
 		String content = request.getParameter("content");
 		String isOpen = request.getParameter("open");
 		
-		System.out.println(title);
+		Part filePart = request.getPart("file");
+		filePart.getInputStream();
+		
+		String realPath = request.getServletContext().getRealPath("/upload");
+		System.out.println(realPath);
+		
 		boolean pub = false;
 		if(isOpen != null) {
 			pub = true;
@@ -46,7 +52,7 @@ public class RegController extends HttpServlet{
 		notice.setWriterId("eoni");
 		
 		NoticeService noticeService = new NoticeService();
-		int result = noticeService.insertNotice(notice);
+//		int result = noticeService.insertNotice(notice);
 		
 		response.sendRedirect("list");
 		
